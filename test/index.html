@@ -27,7 +27,7 @@
 
         // 初始化
         LocalStorage.darkMode = false;
-        Bootstrap.bindDarkMode('LocalStorage.darkMode');
+        Bootstrap.bindDarkMode(LocalStorage, 'darkMode');
 
         document.getElementById('toggle-btn').onclick = () => {
             LocalStorage.darkMode = !LocalStorage.darkMode;
