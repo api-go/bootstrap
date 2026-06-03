@@ -1,12 +1,17 @@
 {
-  "name": "bootstrap",
-  "version": "1.0.0",
+  "name": "@apigo.cc/bootstrap",
+  "version": "1.0.1",
   "type": "module",
   "main": "dist/bootstrap.js",
+  "module": "dist/bootstrap.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "playwright test"
+    "test": "playwright test",
+    "pub": "node scripts/publish.js"
   },
   "keywords": [],
   "author": "",
