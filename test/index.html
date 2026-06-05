@@ -5,8 +5,8 @@
     <script type="importmap">
     {
         "imports": {
-            "@web/state": "../state/src/index.js",
-            "@web/bootstrap": "./src/index.js"
+            "@apigo.cc/state": "../state/src/index.js",
+            "@apigo.cc/bootstrap": "./src/index.js"
         }
     }
     </script>
@@ -22,8 +22,8 @@
     </div>
 
     <script type="module">
-        import { Bootstrap } from '@web/bootstrap';
-        import { LocalStorage } from '@web/state';
+        import { Bootstrap } from '@apigo.cc/bootstrap';
+        import { LocalStorage } from '@apigo.cc/state';
 
         // 初始化
         LocalStorage.darkMode = false;

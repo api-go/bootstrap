@@ -9,32 +9,43 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@web/state': resolve(__dirname, '../state/src/index.js'),
-      '@web/bootstrap': resolve(__dirname, 'src/index.js')
-    }
-  },
-  server: {
-    fs: {
-      allow: ['..']
+      '@apigo.cc/state': resolve(__dirname, '../state/src/index.js'),
+      '@apigo.cc/bootstrap': resolve(__dirname, 'src/index.js')
     }
   },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
-      name: 'Bootstrap',
-      formats: ['es']
+      name: 'ApigoBootstrap',
+      formats: ['umd', 'es']
     },
     rollupOptions: {
-      external: ['@web/state'],
+      external: ['@apigo.cc/state'],
       output: [
         {
-          format: 'es',
+          format: 'umd',
+          name: 'ApigoBootstrap',
           entryFileNames: 'bootstrap.js',
-          minifyInternalExports: false
+          globals: {
+            '@apigo.cc/state': 'ApigoState'
+          }
+        },
+        {
+          format: 'umd',
+          name: 'ApigoBootstrap',
+          entryFileNames: 'bootstrap.min.js',
+          globals: {
+            '@apigo.cc/state': 'ApigoState'
+          },
+          plugins: [terser()]
         },
         {
           format: 'es',
-          entryFileNames: 'bootstrap.min.js',
+          entryFileNames: 'bootstrap.mjs'
+        },
+        {
+          format: 'es',
+          entryFileNames: 'bootstrap.min.mjs',
           plugins: [terser()]
         }
       ]

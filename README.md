@@ -1,68 +1,46 @@
-# @apigo.cc/bootstrap
+# @apigo.cc/bootstrap API 手册 (AI Optimized)
 
-`@apigo.cc/bootstrap` 是一个自包含的 Bootstrap 5.3 引擎集成模块。它内置了 Bootstrap 及其图标库（Bootstrap Icons），并提供了简单的主题配色与暗色模式绑定机制。
+Bootstrap 5.3 自包含集成引擎。
 
----
-
-## 一、 集成方式
-
-推荐使用 `@apigo.cc/loader` 自动调度：
-
+## 0. 快速开始 (Quick Start)
+直接在 HTML 中引入（无需打包）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/loader@1.0.0/dist/loader.min.js"></script>
-<script>
-    Loader.load('state:1.0.11', 'bootstrap:1.0.2');
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.5/dist/bootstrap.min.js"></script>
 ```
 
----
+## 1. 运行时接口
+- **`bootstrap`**: (Object) 官方原生 Bootstrap 镜像。
+- **`Bootstrap`**: (Object) 增强控制接口。
 
-## 二、 核心 API
+## 2. API 参考
 
-### 1. 修改主题配色 (`Bootstrap.config`)
+### `Bootstrap.config(options)`
+统一配置入口。未定义的 key 将被忽略。
 
-您可以通过调用 `Bootstrap.config(colors)` 方法动态修改 Bootstrap 的核心主题颜色。传入十六进制（Hex）值，方法会自动为您计算并设置相应的 CSS 变量以及 RGB 变量：
+#### 参数 `options`:
+- **主题色**: `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark` (Hex 字符串)。
+  - *行为*: 自动更新 CSS 变量并注入深度样式补丁（覆盖按钮、表单控件、开关、进度条等硬编码样式）。
+- **暗黑模式**:
+  - `darkMode`: (Boolean) 直接设置主题。`true` 为 dark，`false` 为 light。
+  - `bindDarkMode`: (Array) `[state, key]`。绑定响应式状态。
+    - `state`: 具有 `__watch(key, callback)` 方法的状态对象。
+    - `key`: 状态对象中的键名。
 
+#### 示例 (Examples):
 ```javascript
-import { Bootstrap } from '@apigo.cc/bootstrap';
-
-// 动态修改 primary 和 danger 的配色
-Bootstrap.config({
-    primary: '#6366f1',
-    danger: '#f43f5e'
+// 1. 设置颜色与暗黑模式简写
+Bootstrap.config({ 
+    primary: '#a855f7', 
+    bindDarkMode: [LocalStorage, 'isDark'] 
 });
+
+// 2. 手动模式
+Bootstrap.config({ darkMode: true });
+
+// 3. 仅更新单一颜色 (自动处理相关组件补丁)
+Bootstrap.config({ success: '#22c55e' });
 ```
 
-### 2. 绑定暗色模式 (`Bootstrap.bindDarkMode`)
-
-`Bootstrap.bindDarkMode(state, key)` 可以将响应式状态（如 `LocalStorage` 或您自定义的 `NewState`）的某个属性绑定为暗色模式的控制器。
-
-当该属性发生变化时，它会自动在 `<html>` 标签上设置 `data-bs-theme="dark"` 或 `data-bs-theme="light"`，从而无缝切换 Bootstrap 5.3 的深色主题模式：
-
-```javascript
-import { LocalStorage } from '@apigo.cc/state';
-import { Bootstrap } from '@apigo.cc/bootstrap';
-
-// 绑定 LocalStorage.darkMode 状态
-Bootstrap.bindDarkMode(LocalStorage, 'darkMode');
-
-// 示例：切换为暗色模式
-LocalStorage.darkMode = true;
-
-// 示例：切换回亮色模式
-LocalStorage.darkMode = false;
-```
-
----
-
-## 三、 使用原生 Bootstrap 实例
-
-`@apigo.cc/bootstrap` 导出了原生的 Bootstrap 全量实例，您可以直接调用原生 Bootstrap 的组件方法（如 Modal, Popover 等）：
-
-```javascript
-import { Bootstrap } from '@apigo.cc/bootstrap';
-
-// 使用原生的 Modal 组件
-const myModal = new Bootstrap.Modal(document.getElementById('myModal'));
-myModal.show();
-```
+## 3. 核心机制 (Internal)
+- **运行时样式补丁**: `Bootstrap.config` 动态更新 `id="bs-config-patch"` 的 `<style>` 标签。通过 `!important` 覆盖 Bootstrap 内部硬编码的组件颜色（如 `.btn`, `.form-switch`, `.form-range`, `.progress-bar`, `.list-group-item` 等）。
+- **零构建支持**: 无需 Sass 重新编译，在纯 ESM 环境下即可实现全量主题定制。
