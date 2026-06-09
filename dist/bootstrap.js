@@ -2120,7 +2120,7 @@ url("data:font/woff;base64,d09GRgABAAAAAsBAAAsAAAAHavgAAQAAAAAAAAAAAAAAAAAAAAAAA
     console.error("vite-plugin-css-injected-by-js", e);
   }
 })();
-(function() {
+var ApigoBootstrap = function(exports) {
   "use strict";
   var top = "top";
   var bottom = "bottom";
@@ -7277,4 +7277,8 @@ url("data:font/woff;base64,d09GRgABAAAAAsBAAAsAAAAHavgAAQAAAAAAAAAAAAAAAAAAAAAAA
     globalThis.bootstrap = bootstrap;
     globalThis.Bootstrap = Bootstrap;
   }
-})();
+  exports.Bootstrap = Bootstrap;
+  exports.default = Bootstrap;
+  Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
+  return exports;
+}({});
