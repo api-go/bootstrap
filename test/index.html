@@ -22,12 +22,14 @@
     </div>
 
     <script type="module">
-        import { Bootstrap } from '@apigo.cc/bootstrap';
-        import { LocalStorage } from '@apigo.cc/state';
+        import '@apigo.cc/state';
+        import '@apigo.cc/bootstrap';
+
+        const { Bootstrap, LocalStorage } = globalThis;
 
         // 初始化
         LocalStorage.darkMode = false;
-        Bootstrap.bindDarkMode(LocalStorage, 'darkMode');
+        Bootstrap.config({ bindDarkMode: [LocalStorage, 'darkMode'] });
 
         document.getElementById('toggle-btn').onclick = () => {
             LocalStorage.darkMode = !LocalStorage.darkMode;
