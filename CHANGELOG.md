@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.6 (2026-06-09)
+
+### Breaking Changes
+- **ESM Deprecation**: Completely removed ESM exports to align with the "zero-boilerplate" project philosophy. The library now relies solely on global injection via `globalThis`.
+- **Build Format**: Switched build output to IIFE format only.
+
+### Improvements
+- **Integration**: Simplified dependency handling for `@apigo.cc/state` by using global variables.
+- **Docs**: Updated README with new versioning and non-ESM usage instructions.
+
 ## 1.0.5 (2026-06-05)
 
 ### Features

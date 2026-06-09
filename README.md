@@ -3,14 +3,16 @@
 Bootstrap 5.3 自包含集成引擎。
 
 ## 0. 快速开始 (Quick Start)
-直接在 HTML 中引入（无需打包）：
+直接在 HTML 中引入（无需打包，完全非 ESM 注入）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.5/dist/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.6/dist/bootstrap.min.js"></script>
 ```
 
 ## 1. 运行时接口
-- **`bootstrap`**: (Object) 官方原生 Bootstrap 镜像。
-- **`Bootstrap`**: (Object) 增强控制接口。
+- **`bootstrap`**: (Object) 官方原生 Bootstrap 镜像。已挂载至 `globalThis.bootstrap`。
+- **`Bootstrap`**: (Object) 增强控制接口。已挂载至 `globalThis.Bootstrap`。
+
+*(注意：本库自 v1.0.6 起全面废弃 ESM 导出，改为纯全局注入模式。)*
 
 ## 2. API 参考
 

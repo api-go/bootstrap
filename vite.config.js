@@ -17,13 +17,13 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
       name: 'ApigoBootstrap',
-      formats: ['umd', 'es']
+      formats: ['iife']
     },
     rollupOptions: {
       external: ['@apigo.cc/state'],
       output: [
         {
-          format: 'umd',
+          format: 'iife',
           name: 'ApigoBootstrap',
           entryFileNames: 'bootstrap.js',
           globals: {
@@ -31,21 +31,12 @@ export default defineConfig({
           }
         },
         {
-          format: 'umd',
+          format: 'iife',
           name: 'ApigoBootstrap',
           entryFileNames: 'bootstrap.min.js',
           globals: {
             '@apigo.cc/state': 'ApigoState'
           },
-          plugins: [terser()]
-        },
-        {
-          format: 'es',
-          entryFileNames: 'bootstrap.mjs'
-        },
-        {
-          format: 'es',
-          entryFileNames: 'bootstrap.min.mjs',
           plugins: [terser()]
         }
       ]

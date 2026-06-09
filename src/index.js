@@ -1,8 +1,9 @@
 import * as bootstrap from 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import { Hash, LocalStorage, RefreshState } from '@apigo.cc/state'
+import '@apigo.cc/state'
 
+const { Hash, LocalStorage, _unsafeRefreshState } = globalThis
 const GlobalStates = { Hash, LocalStorage }
 
 /**
@@ -10,8 +11,8 @@ const GlobalStates = { Hash, LocalStorage }
  * 自包含的 Bootstrap 5.3 集成引擎
  */
 
-// 导出增强功能对象
-export const Bootstrap = {
+// 定义增强功能对象
+const Bootstrap = {
     config: (options = {}) => {
         if (typeof document === 'undefined') return
         const root = document.documentElement
@@ -126,6 +127,4 @@ if (typeof globalThis !== 'undefined') {
     // 大写变量供需要我们额外增强能力的场景使用
     globalThis.Bootstrap = Bootstrap;
 }
-
-export default Bootstrap;
 
