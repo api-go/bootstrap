@@ -17,23 +17,25 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
       name: 'ApigoBootstrap',
-      formats: ['iife']
+      formats: ['umd']
     },
     rollupOptions: {
       external: ['@apigo.cc/state'],
       output: [
         {
-          format: 'iife',
+          format: 'umd',
           name: 'ApigoBootstrap',
           entryFileNames: 'bootstrap.js',
+          extend: true,
           globals: {
             '@apigo.cc/state': 'ApigoState'
           }
         },
         {
-          format: 'iife',
+          format: 'umd',
           name: 'ApigoBootstrap',
           entryFileNames: 'bootstrap.min.js',
+          extend: true,
           globals: {
             '@apigo.cc/state': 'ApigoState'
           },
