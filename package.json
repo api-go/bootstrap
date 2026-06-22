@@ -1,6 +1,6 @@
 {
   "name": "@apigo.cc/bootstrap",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "type": "module",
   "main": "dist/bootstrap.js",
   "files": [
