@@ -2120,7 +2120,9 @@ url("data:font/woff;base64,d09GRgABAAAAAsBAAAsAAAAHavgAAQAAAAAAAAAAAAAAAAAAAAAAA
     console.error("vite-plugin-css-injected-by-js", e);
   }
 })();
-var ApigoBootstrap = function(exports) {
+(function(global, factory) {
+  typeof exports === "object" && typeof module !== "undefined" ? factory(exports, require("@apigo.cc/state")) : typeof define === "function" && define.amd ? define(["exports", "@apigo.cc/state"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.ApigoBootstrap = global.ApigoBootstrap || {}));
+})(this, function(exports2) {
   "use strict";
   var top = "top";
   var bottom = "bottom";
@@ -7277,8 +7279,7 @@ var ApigoBootstrap = function(exports) {
     globalThis.bootstrap = bootstrap;
     globalThis.Bootstrap = Bootstrap;
   }
-  exports.Bootstrap = Bootstrap;
-  exports.default = Bootstrap;
-  Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
-  return exports;
-}({});
+  exports2.Bootstrap = Bootstrap;
+  exports2.default = Bootstrap;
+  Object.defineProperties(exports2, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
+});
