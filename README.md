@@ -5,7 +5,7 @@ Bootstrap 5.3 自包含集成引擎。
 ## 0. 快速开始 (Quick Start)
 直接在 HTML 中引入（无需打包，完全非 ESM 注入）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.6/dist/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.9/dist/bootstrap.min.js"></script>
 ```
 
 ## 1. 运行时接口
@@ -44,5 +44,5 @@ Bootstrap.config({ success: '#22c55e' });
 ```
 
 ## 3. 核心机制 (Internal)
-- **运行时样式补丁**: `Bootstrap.config` 动态更新 `id="bs-config-patch"` 的 `<style>` 标签。通过 `!important` 覆盖 Bootstrap 内部硬编码的组件颜色（如 `.btn`, `.form-switch`, `.form-range`, `.progress-bar`, `.list-group-item` 等）。
+- **运行时样式补丁**: `Bootstrap.config` 动态更新 `id="bs-config-patch"` 的 `<style>` 标签。通过 `!important` 覆盖 Bootstrap 内部硬编码的组件颜色（如 `.btn`, `.form-switch`, `.form-range`, `.progress-bar`, `.list-group-item`, `.nav-pills`, `.dropdown-menu`, `.navbar-nav .nav-link.active` 等）。
 - **零构建支持**: 无需 Sass 重新编译，在纯 ESM 环境下即可实现全量主题定制。

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.9 (2026-06-27)
+
+### Fixes
+- **Theme Engine**: Extended `Bootstrap.config` color patch coverage to `nav-pills`, `dropdown-menu` active state, and `navbar-nav .nav-link.active` so navigation components follow the configured primary color instead of Bootstrap default blue.
+
 ## 1.0.6 (2026-06-09)
 
 ### Breaking Changes

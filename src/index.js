@@ -1,7 +1,7 @@
 import * as bootstrap from 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import { Hash, LocalStorage, RefreshState } from '@apigo.cc/state'
+import { Hash, LocalStorage } from '@apigo.cc/state'
 
 const GlobalStates = { Hash, LocalStorage }
 
@@ -70,6 +70,24 @@ export const Bootstrap = {
                             border-color: var(--bs-primary) !important;
                         }
                         
+                        /* 导航与下拉菜单 (Nav & Dropdown) */
+                        .nav {
+                            --bs-nav-link-color: var(--bs-body-color) !important;
+                            --bs-nav-link-hover-color: var(--bs-primary) !important;
+                        }
+                        .nav-pills {
+                            --bs-nav-pills-link-active-bg: var(--bs-primary) !important;
+                            --bs-nav-pills-link-active-color: #fff !important;
+                        }
+                        .dropdown-menu {
+                            --bs-dropdown-link-active-bg: var(--bs-primary) !important;
+                            --bs-dropdown-link-active-color: #fff !important;
+                        }
+                        .navbar-nav .nav-link.active,
+                        .navbar-nav .nav-link.show {
+                            color: var(--bs-primary) !important;
+                        }
+
                         /* 列表组 (List Group) */
                         .list-group-item.active {
                             background-color: var(--bs-primary) !important;
@@ -128,4 +146,3 @@ if (typeof globalThis !== 'undefined') {
 }
 
 export default Bootstrap;
-
