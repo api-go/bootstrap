@@ -1,0 +1,64 @@
+/* Bootstrap 原生仅提供 .btn-link；为链接按钮补充语义色变体。 */
+.btn-link-primary,
+.btn-link.btn-link-primary {
+    --bs-btn-color: var(--bs-primary);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-primary) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-primary) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-primary);
+}
+
+.btn-link-secondary,
+.btn-link.btn-link-secondary {
+    --bs-btn-color: var(--bs-secondary);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-secondary) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-secondary) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-secondary);
+}
+
+.btn-link-success,
+.btn-link.btn-link-success {
+    --bs-btn-color: var(--bs-success);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-success) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-success) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-success);
+}
+
+.btn-link-info,
+.btn-link.btn-link-info {
+    --bs-btn-color: var(--bs-info);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-info) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-info) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-info);
+}
+
+.btn-link-warning,
+.btn-link.btn-link-warning {
+    --bs-btn-color: var(--bs-warning);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-warning) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-warning) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-warning);
+}
+
+.btn-link-danger,
+.btn-link.btn-link-danger {
+    --bs-btn-color: var(--bs-danger);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-danger) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-danger) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-danger);
+}
+
+.btn-link-light,
+.btn-link.btn-link-light {
+    --bs-btn-color: var(--bs-light);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-light) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-light) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-light);
+}
+
+.btn-link-dark,
+.btn-link.btn-link-dark {
+    --bs-btn-color: var(--bs-dark);
+    --bs-btn-hover-color: color-mix(in srgb, var(--bs-dark) 85%, #000);
+    --bs-btn-active-color: color-mix(in srgb, var(--bs-dark) 80%, #000);
+    --bs-btn-disabled-color: var(--bs-dark);
+}

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('bootstrap self-contained integration', async ({ page }) => {
     page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
-    await page.goto('http://127.0.0.1:8083/test/index.html');
+    await page.goto('/test/index.html');
 
     // 1. 验证 CSS 是否注入（检查 .container 是否有 padding）
     const container = page.locator('.container');
@@ -28,4 +28,32 @@ test('bootstrap self-contained integration', async ({ page }) => {
     await page.evaluate(() => window.setTheme('#ff0000'));
     const primaryColor = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-primary'));
     expect(primaryColor.trim()).toBe('#ff0000');
+
+    // 5. 主色按钮保留 hover / active 层级，链接按钮支持语义色
+    const buttonColors = await page.evaluate(() => {
+        const primary = document.createElement('button')
+        primary.className = 'btn btn-primary'
+        document.body.appendChild(primary)
+
+        const link = document.createElement('button')
+        link.className = 'btn btn-link-primary'
+        document.body.appendChild(link)
+
+        const primaryStyle = getComputedStyle(primary)
+        const linkStyle = getComputedStyle(link)
+        const result = {
+            base: primaryStyle.getPropertyValue('--bs-btn-bg').trim(),
+            hover: primaryStyle.getPropertyValue('--bs-btn-hover-bg').trim(),
+            link: linkStyle.getPropertyValue('--bs-btn-color').trim(),
+            linkHover: linkStyle.getPropertyValue('--bs-btn-hover-color').trim()
+        }
+        primary.remove()
+        link.remove()
+        return result
+    })
+    expect(buttonColors.base).toBe('#ff0000')
+    expect(buttonColors.hover).toBe('#d90000')
+    expect(buttonColors.hover).not.toBe(buttonColors.base)
+    expect(buttonColors.link).toBe('#ff0000')
+    expect(buttonColors.linkHover).toBe('#d90000')
 });
