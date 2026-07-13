@@ -1,6 +1,7 @@
 import * as bootstrap from 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import './button.css'
 import { Hash, LocalStorage } from '@apigo.cc/state'
 
 const GlobalStates = { Hash, LocalStorage }
@@ -27,17 +28,19 @@ export const Bootstrap = {
                 const rgb = Bootstrap._hexToRgb(hex)
                 if (rgb) {
                     const rgbStr = `${rgb.r}, ${rgb.g}, ${rgb.b}`
+                    const hoverColor = Bootstrap._shadeColor(hex, 0.15)
+                    const activeColor = Bootstrap._shadeColor(hex, 0.2)
                     root.style.setProperty(`--bs-${name}-rgb`, rgbStr)
                     
                     // 深度补丁：覆盖组件内部硬编码的变量和状态样式
                     cssPatch += `
-                        .btn-${name} { 
-                            --bs-btn-bg: var(--bs-${name}) !important; 
+                        .btn-${name} {
+                            --bs-btn-bg: var(--bs-${name}) !important;
                             --bs-btn-border-color: var(--bs-${name}) !important;
-                            --bs-btn-hover-bg: var(--bs-${name}) !important;
-                            --bs-btn-hover-border-color: var(--bs-${name}) !important;
-                            --bs-btn-active-bg: var(--bs-${name}) !important;
-                            --bs-btn-active-border-color: var(--bs-${name}) !important;
+                            --bs-btn-hover-bg: ${hoverColor} !important;
+                            --bs-btn-hover-border-color: ${hoverColor} !important;
+                            --bs-btn-active-bg: ${activeColor} !important;
+                            --bs-btn-active-border-color: ${activeColor} !important;
                             --bs-btn-disabled-bg: var(--bs-${name}) !important;
                             --bs-btn-disabled-border-color: var(--bs-${name}) !important;
                         }
@@ -45,7 +48,16 @@ export const Bootstrap = {
                         .text-${name} { color: var(--bs-${name}) !important; }
                         .border-${name} { border-color: var(--bs-${name}) !important; }
                         .badge.bg-${name} { background-color: var(--bs-${name}) !important; }
-                        
+
+                        /* 语义色链接按钮 */
+                        .btn-link-${name},
+                        .btn-link.btn-link-${name} {
+                            --bs-btn-color: var(--bs-${name});
+                            --bs-btn-hover-color: ${hoverColor};
+                            --bs-btn-active-color: ${activeColor};
+                            --bs-btn-disabled-color: var(--bs-${name});
+                        }
+
                         /* 表单控件补丁 (Form Controls) */
                         .form-check-input:checked {
                             background-color: var(--bs-primary) !important;
@@ -61,7 +73,7 @@ export const Bootstrap = {
                         .form-range::-webkit-slider-thumb { background: var(--bs-primary) !important; }
                         .form-range::-moz-range-thumb { background: var(--bs-primary) !important; }
                         .form-range::-webkit-slider-thumb:active { background-color: rgba(var(--bs-primary-rgb), 0.5) !important; }
-                        
+
                         /* 进度条与分页 (Progress & Pagination) */
                         .progress-bar { background-color: var(--bs-primary) !important; }
                         .page-link { color: var(--bs-primary); }
@@ -69,7 +81,7 @@ export const Bootstrap = {
                             background-color: var(--bs-primary) !important;
                             border-color: var(--bs-primary) !important;
                         }
-                        
+
                         /* 导航与下拉菜单 (Nav & Dropdown) */
                         .nav {
                             --bs-nav-link-color: var(--bs-body-color) !important;
@@ -134,6 +146,12 @@ export const Bootstrap = {
         hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b)
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
         return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null
+    },
+    _shadeColor: (hex, amount) => {
+        const rgb = Bootstrap._hexToRgb(hex)
+        if (!rgb) return hex
+        const shade = (value) => Math.round(value * (1 - amount)).toString(16).padStart(2, '0')
+        return `#${shade(rgb.r)}${shade(rgb.g)}${shade(rgb.b)}`
     }
 }
 
