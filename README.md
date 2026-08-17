@@ -5,7 +5,7 @@ Bootstrap 5.3 自包含集成引擎。
 ## 0. 快速开始 (Quick Start)
 直接在 HTML 中引入（无需打包，完全非 ESM 注入）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.10/dist/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.11/dist/bootstrap.min.js"></script>
 ```
 
 ## 1. 运行时接口
@@ -21,7 +21,7 @@ Bootstrap 5.3 自包含集成引擎。
 
 #### 参数 `options`:
 - **主题色**: `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark` (Hex 字符串)。
-  - *行为*: 自动更新 CSS 变量并注入深度样式补丁（覆盖按钮、表单控件、开关、进度条等硬编码样式）。实心按钮保留较深的 hover / active 状态。
+  - *行为*: 自动更新 CSS 变量并注入深度样式补丁（覆盖实心与 outline 按钮、表单控件、开关、进度条等硬编码样式）。按钮保留明确的 hover / active 状态。
   - *链接按钮*: 支持 `btn-link-primary`、`btn-link-info` 等全部语义色类；hover / active 会随配置色变深。也兼容组合写法 `btn btn-link btn-link-info`。
 - **暗黑模式**:
   - `darkMode`: (Boolean) 直接设置主题。`true` 为 dark，`false` 为 light。

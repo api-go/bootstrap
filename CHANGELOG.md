@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.11 (2026-08-17)
+
+### Fixes
+- **Outline Theme Colors**: `btn-outline-*` now follows every runtime semantic color configured through `Bootstrap.config`, including default, hover, active, and disabled states.
+
 ## 1.0.9 (2026-06-27)
 
 ### Fixes
