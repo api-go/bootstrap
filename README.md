@@ -5,7 +5,7 @@ Bootstrap 5.3 自包含集成引擎。
 ## 0. 快速开始 (Quick Start)
 直接在 HTML 中引入（无需打包，完全非 ESM 注入）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.11/dist/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.12/dist/bootstrap.min.js"></script>
 ```
 
 ## 1. 运行时接口
