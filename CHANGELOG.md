@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.12 (2026-08-18)
+
+### Fixes
+- **Link Theme Colors**: `btn-link` and semantic links now follow the configured Bootstrap primary color across normal, hover, active, and disabled states.
+
 ## 1.0.11 (2026-08-17)
 
 ### Fixes
