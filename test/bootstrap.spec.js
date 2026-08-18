@@ -39,6 +39,10 @@ test('bootstrap self-contained integration', async ({ page }) => {
         link.className = 'btn btn-link-primary'
         document.body.appendChild(link)
 
+        const defaultLink = document.createElement('button')
+        defaultLink.className = 'btn btn-link'
+        document.body.appendChild(defaultLink)
+
         const outline = document.createElement('button')
         outline.className = 'btn btn-outline-primary'
         document.body.appendChild(outline)
@@ -51,6 +55,8 @@ test('bootstrap self-contained integration', async ({ page }) => {
             hover: primaryStyle.getPropertyValue('--bs-btn-hover-bg').trim(),
             link: linkStyle.getPropertyValue('--bs-btn-color').trim(),
             linkHover: linkStyle.getPropertyValue('--bs-btn-hover-color').trim(),
+            defaultLink: getComputedStyle(defaultLink).getPropertyValue('--bs-btn-color').trim(),
+            rootLink: getComputedStyle(document.documentElement).getPropertyValue('--bs-link-color').trim(),
             outline: outlineStyle.getPropertyValue('--bs-btn-color').trim(),
             outlineBorder: outlineStyle.getPropertyValue('--bs-btn-border-color').trim(),
             outlineHover: outlineStyle.getPropertyValue('--bs-btn-hover-bg').trim(),
@@ -58,6 +64,7 @@ test('bootstrap self-contained integration', async ({ page }) => {
         }
         primary.remove()
         link.remove()
+        defaultLink.remove()
         outline.remove()
         return result
     })
@@ -66,6 +73,8 @@ test('bootstrap self-contained integration', async ({ page }) => {
     expect(buttonColors.hover).not.toBe(buttonColors.base)
     expect(buttonColors.link).toBe('#ff0000')
     expect(buttonColors.linkHover).toBe('#d90000')
+    expect(buttonColors.defaultLink).toBe('#ff0000')
+    expect(buttonColors.rootLink).toBe('#ff0000')
     expect(buttonColors.outline).toBe('#ff0000')
     expect(buttonColors.outlineBorder).toBe('#ff0000')
     expect(buttonColors.outlineHover).toBe('#ff0000')
