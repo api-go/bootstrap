@@ -56,6 +56,7 @@ test('bootstrap self-contained integration', async ({ page }) => {
             link: linkStyle.getPropertyValue('--bs-btn-color').trim(),
             linkHover: linkStyle.getPropertyValue('--bs-btn-hover-color').trim(),
             defaultLink: getComputedStyle(defaultLink).getPropertyValue('--bs-btn-color').trim(),
+            bodyColor: getComputedStyle(document.documentElement).getPropertyValue('--bs-body-color').trim(),
             rootLink: getComputedStyle(document.documentElement).getPropertyValue('--bs-link-color').trim(),
             outline: outlineStyle.getPropertyValue('--bs-btn-color').trim(),
             outlineBorder: outlineStyle.getPropertyValue('--bs-btn-border-color').trim(),
@@ -73,7 +74,8 @@ test('bootstrap self-contained integration', async ({ page }) => {
     expect(buttonColors.hover).not.toBe(buttonColors.base)
     expect(buttonColors.link).toBe('#ff0000')
     expect(buttonColors.linkHover).toBe('#d90000')
-    expect(buttonColors.defaultLink).toBe('#ff0000')
+    expect(buttonColors.defaultLink).toBe(buttonColors.bodyColor)
+    expect(buttonColors.defaultLink).not.toBe(buttonColors.base)
     expect(buttonColors.rootLink).toBe('#ff0000')
     expect(buttonColors.outline).toBe('#ff0000')
     expect(buttonColors.outlineBorder).toBe('#ff0000')
