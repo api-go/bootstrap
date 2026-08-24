@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.13 (2026-08-25)
+
+### Fixes
+- **Neutral Link Buttons**: the default `btn-link` keeps the body text color while semantic link variants continue to follow their configured theme colors.
+- **Workspace Dependencies**: local dependencies now use the shared `.profile` installation and cannot be committed accidentally.
+
 ## 1.0.12 (2026-08-18)
 
 ### Fixes
