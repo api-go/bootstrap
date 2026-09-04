@@ -81,4 +81,13 @@ test('bootstrap self-contained integration', async ({ page }) => {
     expect(buttonColors.outlineBorder).toBe('#ff0000')
     expect(buttonColors.outlineHover).toBe('#ff0000')
     expect(buttonColors.outlineActive).toBe('#cc0000')
+
+    await page.evaluate(() => window.Bootstrap.config({
+        bodyTertiaryBg: '#eeeeee',
+        light: { bodyTertiaryBg: '#fafafa' },
+        dark: { bodyTertiaryBg: '#222222' }
+    }))
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-body-tertiary-bg').trim())).toBe('#eeeeee')
+    await page.evaluate(() => window.Bootstrap.config({ darkMode: true }))
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-body-tertiary-bg').trim())).toBe('#222222')
 });
