@@ -16,7 +16,7 @@ export const BootstrapThemes = {
     clean: {
         primary: '#a855f7', secondary: '#81a1c1', success: '#a3be8c', info: '#88c0d0', warning: '#ebcb8b', danger: '#bf616a',
         light: { bodyBg: '#ffffff', bodyColor: '#111111', bodySecondaryBg: '#f5f5f5', bodyTertiaryBg: '#ffffff', borderColor: '#d6d6d6' },
-        dark: { bodyBg: '#050505', bodyColor: '#f5f5f5', bodyTertiaryBg: '#111111', bodySecondaryBg: '#1a1a1a', borderColor: '#333333' }
+        dark: { bodyBg: '#050505', bodyColor: '#f5f5f5', bodyTertiaryBg: '#111111', bodySecondaryBg: '#242424', borderColor: '#3a3a3a' }
     },
     soft: {
         primary: '#a855f7', secondary: '#6c757d', success: '#3fb950', info: '#3794ff', warning: '#d29922', danger: '#f85149',
@@ -76,7 +76,7 @@ export const Bootstrap = {
                 if (rgb) document.documentElement.style.setProperty(`--bs-${cssName}-rgb`, `${rgb.r}, ${rgb.g}, ${rgb.b}`)
             }
         }
-        const aliases = { tertiaryBg: 'bodyTertiaryBg', secondaryBg: 'bodySecondaryBg', tertiaryColor: 'bodyTertiaryColor', secondaryColor: 'bodySecondaryColor' }
+        const aliases = { tertiaryBg: 'bodyTertiaryBg', secondaryBg: 'bodySecondaryBg', tertiaryColor: 'bodyTertiaryColor', secondaryColor: 'bodySecondaryColor', emphasisColor: 'bodyEmphasisColor' }
         for (const [alias, source] of Object.entries(aliases)) {
             const value = palette[alias] ?? palette[source]
             if (typeof value === 'string') {
@@ -101,7 +101,20 @@ export const Bootstrap = {
 
         // 1. 处理颜色主题。除基础色外，Bootstrap 5.3 的语义变量也可配置。
         const colors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'light', 'dark']
-        const semantic = ['body-color', 'body-bg', 'body-secondary-color', 'body-secondary-bg', 'body-tertiary-color', 'body-tertiary-bg', 'body-emphasis-color', 'heading-color', 'border-color', 'border-color-translucent', 'link-color', 'link-hover-color']
+        const semantic = {
+            'body-color': [],
+            'body-bg': [],
+            'body-secondary-color': ['secondary-color'],
+            'body-secondary-bg': ['secondary-bg'],
+            'body-tertiary-color': ['tertiary-color'],
+            'body-tertiary-bg': ['tertiary-bg'],
+            'body-emphasis-color': ['emphasis-color'],
+            'heading-color': [],
+            'border-color': [],
+            'border-color-translucent': [],
+            'link-color': [],
+            'link-hover-color': []
+        }
         let cssPatch = ''
         let themeVars = ''
         const applyPalette = (palette, selector = '') => {
@@ -121,10 +134,15 @@ export const Bootstrap = {
                 const activeColor = Bootstrap._shadeColor(hex, 0.2)
                 vars.push({ name, hex, hoverColor, activeColor })
             })
-            semantic.forEach(name => {
-                const key = name.replaceAll('-', '')
-                const value = palette[name] ?? palette[key]
-                if (value) setVar(name, value)
+            Object.entries(semantic).forEach(([name, aliases]) => {
+                const camelKey = name.replaceAll(/-([a-z])/g, (_, letter) => letter.toUpperCase())
+                const value = palette[name] ?? palette[camelKey]
+                if (typeof value !== 'string' || !value) return
+                for (const target of [name, ...aliases]) {
+                    setVar(target, value)
+                    const rgb = Bootstrap._hexToRgb(value)
+                    if (rgb) setVar(`${target}-rgb`, `${rgb.r}, ${rgb.g}, ${rgb.b}`)
+                }
             })
             if (palette.primary) {
                 const hoverColor = Bootstrap._shadeColor(palette.primary, 0.15)

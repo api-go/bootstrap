@@ -25,7 +25,7 @@ test('bootstrap self-contained integration', async ({ page }) => {
     expect(await html.getAttribute('data-bs-theme')).toBe('dark');
 
     // 4. 验证主色修改
-    await page.evaluate(() => window.setTheme('#ff0000'));
+    await page.evaluate(() => window.Bootstrap.config({ primary: '#ff0000' }));
     const primaryColor = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-primary'));
     expect(primaryColor.trim()).toBe('#ff0000');
 
@@ -83,11 +83,13 @@ test('bootstrap self-contained integration', async ({ page }) => {
     expect(buttonColors.outlineActive).toBe('#cc0000')
 
     await page.evaluate(() => window.Bootstrap.config({
-        bodyTertiaryBg: '#eeeeee',
-        light: { bodyTertiaryBg: '#fafafa' },
-        dark: { bodyTertiaryBg: '#222222' }
+        light: { bodySecondaryBg: '#eeeeee', bodyTertiaryBg: '#fafafa' },
+        dark: { bodySecondaryBg: '#333333', bodyTertiaryBg: '#222222' },
+        darkMode: false
     }))
-    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-body-tertiary-bg').trim())).toBe('#eeeeee')
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-secondary-bg').trim())).toBe('#eeeeee')
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-tertiary-bg-rgb').trim())).toBe('250, 250, 250')
     await page.evaluate(() => window.Bootstrap.config({ darkMode: true }))
-    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-body-tertiary-bg').trim())).toBe('#222222')
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-secondary-bg').trim())).toBe('#333333')
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--bs-tertiary-bg-rgb').trim())).toBe('34, 34, 34')
 });

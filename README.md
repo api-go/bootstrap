@@ -5,7 +5,7 @@ Bootstrap 5.3 自包含集成引擎。
 ## 0. 快速开始 (Quick Start)
 直接在 HTML 中引入（无需打包，完全非 ESM 注入）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.13/dist/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.14/dist/bootstrap.min.js"></script>
 ```
 
 ## 1. 运行时接口
@@ -21,7 +21,7 @@ Bootstrap 5.3 自包含集成引擎。
 
 基础配置是可选的增量配置；`light` / `dark` 也是可选覆盖层，不需要同时提供。主题切换时，主题层覆盖基础层，未覆盖的值继续继承基础配置或 Bootstrap 默认值。
 
-内置方案（均保持品牌主色 `#a855f7`）：`Bootstrap.themes.vscode`、`github`、`nord`、`ocean`。这些方案都同时包含 light/dark 配置。使用 `Bootstrap.useTheme('vscode')` 即时应用，也可传入第二个对象局部覆盖。可用 `Bootstrap.addTheme('my-theme', theme)` 注册自定义方案。
+内置方案（均保持品牌主色 `#a855f7`）：`Bootstrap.themes.steady`、`clean`、`soft`、`cool`。这些方案都同时包含 light/dark 配置。使用 `Bootstrap.useTheme('steady')` 即时应用，也可传入第二个对象局部覆盖。可用 `Bootstrap.addTheme('my-theme', theme)` 注册自定义方案。
 
 #### 参数 `options`:
 - **主题色**: `primary`, `secondary`, `success`, `info`, `warning`, `danger`, `light`, `dark` (Hex 字符串)。
@@ -50,7 +50,7 @@ Bootstrap.config({ darkMode: true });
 Bootstrap.config({ success: '#22c55e' });
 
 // 使用 VS Code 风格方案；只在深色模式额外覆盖背景
-Bootstrap.useTheme('vscode', { dark: { bodyBg: '#181818' } });
+Bootstrap.useTheme('steady', { dark: { bodyBg: '#181818' } });
 
 // 深浅色分别配置层级背景和正文色
 Bootstrap.config({

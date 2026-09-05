@@ -4779,8 +4779,8 @@
 				bodyBg: "#050505",
 				bodyColor: "#f5f5f5",
 				bodyTertiaryBg: "#111111",
-				bodySecondaryBg: "#1a1a1a",
-				borderColor: "#333333"
+				bodySecondaryBg: "#242424",
+				borderColor: "#3a3a3a"
 			}
 		},
 		soft: {
@@ -4941,7 +4941,8 @@
 				tertiaryBg: "bodyTertiaryBg",
 				secondaryBg: "bodySecondaryBg",
 				tertiaryColor: "bodyTertiaryColor",
-				secondaryColor: "bodySecondaryColor"
+				secondaryColor: "bodySecondaryColor",
+				emphasisColor: "bodyEmphasisColor"
 			})) {
 				const value = palette[alias] ?? palette[source];
 				if (typeof value === "string") {
@@ -4973,20 +4974,20 @@
 				"light",
 				"dark"
 			];
-			const semantic = [
-				"body-color",
-				"body-bg",
-				"body-secondary-color",
-				"body-secondary-bg",
-				"body-tertiary-color",
-				"body-tertiary-bg",
-				"body-emphasis-color",
-				"heading-color",
-				"border-color",
-				"border-color-translucent",
-				"link-color",
-				"link-hover-color"
-			];
+			const semantic = {
+				"body-color": [],
+				"body-bg": [],
+				"body-secondary-color": ["secondary-color"],
+				"body-secondary-bg": ["secondary-bg"],
+				"body-tertiary-color": ["tertiary-color"],
+				"body-tertiary-bg": ["tertiary-bg"],
+				"body-emphasis-color": ["emphasis-color"],
+				"heading-color": [],
+				"border-color": [],
+				"border-color-translucent": [],
+				"link-color": [],
+				"link-hover-color": []
+			};
 			let cssPatch = "";
 			let themeVars = "";
 			const applyPalette = (palette, selector = "") => {
@@ -5011,10 +5012,15 @@
 						activeColor
 					});
 				});
-				semantic.forEach((name) => {
-					const key = name.replaceAll("-", "");
-					const value = palette[name] ?? palette[key];
-					if (value) setVar(name, value);
+				Object.entries(semantic).forEach(([name, aliases]) => {
+					const camelKey = name.replaceAll(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+					const value = palette[name] ?? palette[camelKey];
+					if (typeof value !== "string" || !value) return;
+					for (const target of [name, ...aliases]) {
+						setVar(target, value);
+						const rgb = Bootstrap._hexToRgb(value);
+						if (rgb) setVar(`${target}-rgb`, `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+					}
 				});
 				if (palette.primary) {
 					const hoverColor = Bootstrap._shadeColor(palette.primary, .15);
