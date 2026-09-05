@@ -16,7 +16,7 @@ export const BootstrapThemes = {
     clean: {
         primary: '#a855f7', secondary: '#81a1c1', success: '#a3be8c', info: '#88c0d0', warning: '#ebcb8b', danger: '#bf616a',
         light: { bodyBg: '#ffffff', bodyColor: '#111111', bodySecondaryBg: '#f5f5f5', bodyTertiaryBg: '#ffffff', borderColor: '#d6d6d6' },
-        dark: { bodyBg: '#050505', bodyColor: '#f5f5f5', bodyTertiaryBg: '#111111', bodySecondaryBg: '#242424', borderColor: '#3a3a3a' }
+        dark: { bodyBg: '#050505', bodyColor: '#f5f5f5', bodyTertiaryBg: '#222222', bodySecondaryBg: '#444444', borderColor: '#3a3a3a' }
     },
     soft: {
         primary: '#a855f7', secondary: '#6c757d', success: '#3fb950', info: '#3794ff', warning: '#d29922', danger: '#f85149',
