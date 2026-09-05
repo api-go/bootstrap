@@ -4778,8 +4778,8 @@
 			dark: {
 				bodyBg: "#050505",
 				bodyColor: "#f5f5f5",
-				bodyTertiaryBg: "#111111",
-				bodySecondaryBg: "#242424",
+				bodyTertiaryBg: "#222222",
+				bodySecondaryBg: "#444444",
 				borderColor: "#3a3a3a"
 			}
 		},

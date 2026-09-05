@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- **调整**:
+  - 将 clean 深色主题的 tertiary / secondary 背景调整为 `#222222` / `#444444`，并同步其 RGB 变量。
+
 ## [v1.0.14] - 2026-09-05
 - **修复**:
   - 修复 camelCase 语义色配置未写入 Bootstrap 实际变量及 RGB 变量的问题。
