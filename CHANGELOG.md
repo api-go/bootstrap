@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.0.14] - 2026-09-05
+- **修复**:
+  - 修复 camelCase 语义色配置未写入 Bootstrap 实际变量及 RGB 变量的问题。
+  - 拉开 clean 深色主题的 secondary 与 tertiary 背景层级。
+- **文档**:
+  - 统一 README 与源码中的内置主题名称。
+
 ## 1.0.13 (2026-08-25)
 
 ### Fixes
