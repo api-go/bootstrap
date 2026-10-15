@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## [v1.0.15] - 2026-10-15
+- Center child Bootstrap icons with intrinsic flex alignment so density changes and line-height utilities cannot shift Add/action glyphs.
+- Add inherited ui-sm/ui-lg/ui-default density for native Bootstrap controls and shared layout tokens; explicit native sizes and spacing retain priority.
+- Add disposable observeDensity bridge for consumer geometry caches. Preserve existing theme palettes and semantic link buttons.
 - **调整**:
   - 将 clean 深色主题的 tertiary / secondary 背景调整为 `#222222` / `#444444`，并同步其 RGB 变量。
 
