@@ -1,0 +1,58 @@
+/* Density inherits through html/body or any subtree. Explicit Bootstrap size
+   classes and spacing utilities keep their original cascade precedence. */
+:root, .ui-default {
+  --ui-density: default;
+  --ui-control-font: 1rem; --ui-control-y: .375rem; --ui-control-x: .75rem; --ui-control-radius: var(--bs-border-radius);
+  --ui-button-font: 1rem; --ui-button-y: .375rem; --ui-button-x: .75rem;
+  --ui-region-space: 1rem; --ui-tool-space: .5rem; --ui-gap: .5rem; --ui-section-gap: 1.5rem;
+  --ui-field-gap: 1rem; --ui-column-gap: 1.5rem; --ui-field-min: 18rem;
+  --ui-menu-y: .25rem; --ui-item-font: 1rem; --ui-item-y: .5rem; --ui-item-x: 1rem;
+  --ui-list-row: 40px; --ui-grid-row: 40px; --ui-toolbar-height: 48px;
+}
+.ui-sm {
+  --ui-density: sm;
+  --ui-control-font: .875rem; --ui-control-y: .25rem; --ui-control-x: .5rem; --ui-control-radius: var(--bs-border-radius-sm);
+  --ui-button-font: .875rem; --ui-button-y: .25rem; --ui-button-x: .5rem;
+  --ui-region-space: .5rem; --ui-tool-space: .25rem; --ui-gap: .25rem; --ui-section-gap: 1rem;
+  --ui-field-gap: .5rem; --ui-column-gap: 1rem; --ui-field-min: 16rem;
+  --ui-menu-y: .125rem; --ui-item-font: .875rem; --ui-item-y: .25rem; --ui-item-x: .5rem;
+  --ui-list-row: 32px; --ui-grid-row: 32px; --ui-toolbar-height: 40px;
+}
+.ui-lg {
+  --ui-density: lg;
+  --ui-control-font: 1.25rem; --ui-control-y: .5rem; --ui-control-x: 1rem; --ui-control-radius: var(--bs-border-radius-lg);
+  --ui-button-font: 1.25rem; --ui-button-y: .5rem; --ui-button-x: 1rem;
+  --ui-region-space: 1.5rem; --ui-tool-space: 1rem; --ui-gap: .75rem; --ui-section-gap: 2rem;
+  --ui-field-gap: 1.5rem; --ui-column-gap: 2rem; --ui-field-min: 20rem;
+  --ui-menu-y: .5rem; --ui-item-font: 1.125rem; --ui-item-y: .75rem; --ui-item-x: 1.25rem;
+  --ui-list-row: 48px; --ui-grid-row: 48px; --ui-toolbar-height: 64px;
+}
+.btn:where(:not(.btn-sm,.btn-lg,.btn-group-sm > .btn,.btn-group-lg > .btn,.input-group-sm > .btn,.input-group-lg > .btn)) {
+  --bs-btn-font-size: var(--ui-button-font); --bs-btn-padding-y: var(--ui-button-y); --bs-btn-padding-x: var(--ui-button-x); --bs-btn-border-radius: var(--ui-control-radius);
+}
+.form-control:where(:not(.form-control-sm,.form-control-lg,.input-group-sm > .form-control,.input-group-lg > .form-control)),
+.form-select:where(:not(.form-select-sm,.form-select-lg,.input-group-sm > .form-select,.input-group-lg > .form-select)),
+.input-group-text:where(:not(.input-group-sm > .input-group-text,.input-group-lg > .input-group-text)) {
+  font-size: var(--ui-control-font); padding-top: var(--ui-control-y); padding-bottom: var(--ui-control-y); border-radius: var(--ui-control-radius);
+}
+.form-control:where(:not(.form-control-sm,.form-control-lg,.input-group-sm > .form-control,.input-group-lg > .form-control)),
+.input-group-text:where(:not(.input-group-sm > .input-group-text,.input-group-lg > .input-group-text)) { padding-inline: var(--ui-control-x); }
+/* Keep the select arrow's native reserved space. */
+.form-select:where(:not(.form-select-sm,.form-select-lg,.input-group-sm > .form-select,.input-group-lg > .form-select)) { padding-left:var(--ui-control-x); }
+.form-control[type=file]:where(:not(.form-control-sm,.form-control-lg))::file-selector-button { padding:var(--ui-control-y) var(--ui-control-x); margin:calc(-1 * var(--ui-control-y)) calc(-1 * var(--ui-control-x)); margin-inline-end:var(--ui-control-x); }
+.form-check { font-size:var(--ui-control-font); }
+
+.list-group { font-size:var(--ui-item-font); --bs-list-group-item-padding-y:var(--ui-item-y); --bs-list-group-item-padding-x:var(--ui-item-x); }
+.nav { --bs-nav-link-font-size:var(--ui-item-font); --bs-nav-link-padding-y:var(--ui-item-y); --bs-nav-link-padding-x:var(--ui-item-x); }
+.dropdown-menu { --bs-dropdown-item-padding-y:var(--ui-menu-y); --bs-dropdown-font-size:var(--ui-item-font); }
+.modal { --bs-modal-padding:var(--ui-region-space); --bs-modal-header-padding:var(--ui-region-space); }
+.table:where(:not(.table-sm)) > :not(caption) > * > * { padding:var(--ui-item-y) var(--ui-tool-space); }
+
+.table {font-size:var(--ui-item-font);}
+.card {--bs-card-spacer-y:var(--ui-region-space);--bs-card-spacer-x:var(--ui-region-space);--bs-card-cap-padding-y:var(--ui-tool-space);--bs-card-cap-padding-x:var(--ui-region-space);}
+.offcanvas {--bs-offcanvas-padding-y:var(--ui-region-space);--bs-offcanvas-padding-x:var(--ui-region-space);}
+.form-control-color:where(:not(.form-control-sm,.form-control-lg)) {height:calc(1.5em + 2 * var(--ui-control-y) + 2 * var(--bs-border-width));}
+/* Icon buttons must align the glyph as a flex item instead of relying on a
+   text baseline; tiny padding/line-height utilities otherwise shift it. */
+.btn:where(:has(> i.bi)) {display:inline-flex;align-items:center;justify-content:center;}
+.btn > i.bi {display:inline-flex;align-items:center;justify-content:center;line-height:inherit;min-height:1lh;flex-shrink:0;}

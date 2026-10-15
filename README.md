@@ -5,7 +5,7 @@ Bootstrap 5.3 自包含集成引擎。
 ## 0. 快速开始 (Quick Start)
 直接在 HTML 中引入（无需打包，完全非 ESM 注入）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.14/dist/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.15/dist/bootstrap.min.js"></script>
 ```
 
 ## 1. 运行时接口
@@ -65,5 +65,22 @@ Bootstrap.config({
 ```
 
 ## 3. 核心机制 (Internal)
+
+### 全局密度
+
+在 `html` 或 `body` 上设置 `class="ui-sm"` / `class="ui-lg"`；不设置则保持 BS5 默认大小。局部区域可以使用 `ui-default`、`ui-sm` 或 `ui-lg` 覆盖继承，每个元素只设置一个密度类。切换 class 即时生效，无需遍历控件、重写 class 或重建表单。
+
+普通 `.btn`、`.form-control`、`.form-select`、输入组文本、列表组、导航、菜单、表格和模态框使用继承尺寸。显式 `btn-sm/lg`、`form-control-sm/lg`、`form-select-sm/lg`、`btn-group-sm/lg`、`input-group-sm/lg` 优先；显式 `p-*`、`gap-*` 等工具类不受影响。密度不会缩放根字号，也不代表屏幕断点。
+
+公共组件可消费 `--ui-region-space`、`--ui-tool-space`、`--ui-gap`、`--ui-field-gap`、`--ui-column-gap`、`--ui-item-font`、`--ui-list-row`、`--ui-grid-row` 等继承变量。虚拟滚动等几何缓存使用 `Bootstrap.observeDensity(element, (density, computedStyle) => ...)`，返回解除监听函数；组件销毁时必须调用它。此监听只用于实际密度变更，普通视觉样式由 CSS 完成。
+
+```html
+<body class="ui-sm">
+  <button class="btn btn-primary">继承小尺寸</button>
+  <button class="btn btn-primary btn-lg">显式大尺寸</button>
+  <section class="ui-default"><input class="form-control"></section>
+</body>
+```
+
 - **运行时样式补丁**: `Bootstrap.config` 动态更新 `id="bs-config-patch"` 的 `<style>` 标签。通过 `!important` 覆盖 Bootstrap 内部硬编码的组件颜色（如 `.btn`, `.form-switch`, `.form-range`, `.progress-bar`, `.list-group-item`, `.nav-pills`, `.dropdown-menu`, `.navbar-nav .nav-link.active` 等）。
 - **零构建支持**: 无需 Sass 重新编译，在纯 ESM 环境下即可实现全量主题定制。

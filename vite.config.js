@@ -4,6 +4,7 @@ import terser from '@rollup/plugin-terser';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig({
+  server: { fs: { allow: [resolve(__dirname), resolve(__dirname, '../state'), resolve(__dirname, '../.profile/node_modules/bootstrap-icons/font/fonts')] } },
   plugins: [
     cssInjectedByJsPlugin()
   ],
