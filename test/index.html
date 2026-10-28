@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Bootstrap Integration Test</title>
     <script type="importmap">
     {
@@ -34,6 +36,16 @@
             <span class="badge bg-success">Success</span>
             <span class="badge bg-danger">Danger</span>
         </div>
+        <section id="appearance-demo" class="border rounded mt-3">
+            <label class="form-check m-3"><input id="appearance-toggle" class="form-check-input" type="checkbox">简洁外观 ui-link</label>
+            <div id="appearance-toolbar" class="ui-toolbar d-flex flex-wrap align-items-center px-2 px-sm-3">
+                <div class="input-group w-auto"><span class="input-group-text">Status</span><select id="appearance-status" class="form-select" aria-label="Status"><option>All</option><option>Open</option></select></div>
+                <input id="appearance-query" class="form-control w-auto" aria-label="Query" value="Draft">
+                <button id="appearance-search" class="btn btn-primary">Search</button>
+                <input id="appearance-invalid" class="form-control is-invalid w-auto" type="email" aria-label="Invalid email" value="invalid">
+                <input id="appearance-disabled" class="form-control w-auto" disabled aria-label="Disabled value" value="Disabled">
+            </div>
+        </section>
     </div>
 
     <script type="module">
@@ -46,6 +58,9 @@
 
         document.getElementById('toggle-btn').onclick = () => {
             LocalStorage.darkMode = !LocalStorage.darkMode;
+        };
+        document.getElementById('appearance-toggle').onchange = (event) => {
+            document.getElementById('appearance-demo').classList.toggle('ui-link', event.target.checked);
         };
 
         // 验证主色修改

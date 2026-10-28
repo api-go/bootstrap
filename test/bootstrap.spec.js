@@ -117,3 +117,22 @@ test('global density inherits while explicit Bootstrap sizes and groups win', as
         await expect(page.locator('#group')).toHaveCSS('font-size','20px')
     }
 })
+test('shared ui-link appearance preserves text values validation and toolbar density', async ({ page }) => {
+    await page.goto('/test/index.html');
+    await page.getByLabel('Query', { exact:true }).fill('Retained draft');
+    const before=await page.locator('#appearance-toolbar').evaluate(node=>getComputedStyle(node).paddingTop);
+    await page.locator('#appearance-toggle').check();
+    await expect(page.getByLabel('Query', { exact:true })).toHaveValue('Retained draft');
+    await expect(page.locator('#appearance-query')).toHaveCSS('border-top-color','rgba(0, 0, 0, 0)');
+    await expect(page.locator('#appearance-search')).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+    await expect(page.locator('#appearance-demo .input-group-text')).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+    await page.getByLabel('Status', { exact:true }).selectOption('Open');
+    await expect(page.getByLabel('Status', { exact:true })).toHaveValue('Open');
+    await expect(page.locator('#appearance-disabled')).toBeDisabled();
+    expect(parseFloat(await page.locator('#appearance-toolbar').evaluate(node=>getComputedStyle(node).paddingTop))).toBeLessThan(parseFloat(before));
+    const invalid=await page.locator('#appearance-invalid').evaluate(node=>getComputedStyle(node).borderBottomColor);
+    await page.locator('#appearance-invalid').focus();
+    await expect(page.locator('#appearance-invalid')).toHaveCSS('border-bottom-color',invalid);
+    await page.locator('#appearance-toggle').uncheck();
+    await expect(page.locator('#appearance-query')).not.toHaveCSS('border-top-color','rgba(0, 0, 0, 0)');
+});

@@ -1,0 +1,84 @@
+.btn-link, .btn-link:hover, .btn-link:focus-visible {text-decoration: none;}
+.ui-toolbar {
+  --ui-toolbar-gap: calc(var(--ui-gap, .5rem) + .25rem);
+  padding-block: calc(var(--ui-tool-space, .5rem) + .25rem);
+  gap: var(--ui-toolbar-gap);
+}
+:is(.ui-link.ui-toolbar, .ui-link .ui-toolbar) {
+  --ui-toolbar-gap: var(--ui-gap, .5rem);
+  padding-block: var(--ui-tool-space, .5rem);
+}
+.ui-toolbar-fields {gap: var(--ui-toolbar-gap, var(--ui-gap, .5rem));}
+:is(.ui-link.btn, .ui-link .btn) {
+  --bs-btn-color: var(--ui-link-color, var(--bs-link-color)) !important;
+  --bs-btn-bg: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-hover-color: var(--ui-link-hover-color, var(--bs-link-hover-color)) !important;
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-hover-border-color: transparent !important;
+  --bs-btn-active-color: var(--ui-link-hover-color, var(--bs-link-hover-color)) !important;
+  --bs-btn-active-bg: transparent !important;
+  --bs-btn-active-border-color: transparent !important;
+  --bs-btn-disabled-color: var(--bs-secondary-color) !important;
+  --bs-btn-disabled-bg: transparent !important;
+  --bs-btn-disabled-border-color: transparent !important;
+  text-decoration: none;
+}
+:is(.ui-link.btn, .ui-link .btn):is(.active, [aria-pressed=true]) {
+  --bs-btn-color: var(--bs-emphasis-color) !important;
+  --bs-btn-active-color: var(--bs-emphasis-color) !important;
+}
+:is(.ui-link.pagination, .ui-link .pagination) {
+  --bs-pagination-color: var(--bs-link-color);
+  --bs-pagination-hover-color: var(--bs-link-hover-color);
+  --bs-pagination-active-color: var(--bs-emphasis-color);
+}
+:is(.ui-link.pagination, .ui-link .pagination) .page-link {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: var(--bs-pagination-color);
+  text-decoration: none;
+}
+:is(.ui-link.pagination, .ui-link .pagination) .page-link:hover {
+  color: var(--bs-pagination-hover-color);
+}
+:is(.ui-link.pagination, .ui-link .pagination) .active > .page-link {
+  color: var(--bs-pagination-active-color);
+  text-decoration-line: underline;
+  text-decoration-thickness: .125em;
+  text-underline-offset: .2em;
+}
+:is(.ui-link.pagination, .ui-link .pagination) :is(.disabled > .page-link, .page-link.disabled) {
+  color: var(--bs-pagination-disabled-color);
+  text-decoration: none;
+}
+
+:is(.ui-link, .ui-link *):is(.form-control:not([type=file],[type=color]), .form-select:not([multiple],[size]:not([size="0"],[size="1"]))) {
+  background-color: transparent;
+  border-color: transparent transparent var(--ui-input-line-color, var(--bs-border-color)) transparent;
+  border-radius: 0;
+}
+:is(.ui-link, .ui-link *):is(.form-control:not([type=file],[type=color]), .form-select:not([multiple],[size]:not([size="0"],[size="1"]))):focus {
+  --ui-input-line-color: var(--bs-primary);
+  box-shadow: 0 1px 0 var(--ui-input-line-color);
+}
+:is(.ui-link, .ui-link *):is(.form-control:not([type=file],[type=color]), .form-select:not([multiple],[size]:not([size="0"],[size="1"]))).is-valid, .was-validated :is(.ui-link, .ui-link *):is(.form-control:not([type=file],[type=color]), .form-select:not([multiple],[size]:not([size="0"],[size="1"]))):valid {
+  --ui-input-line-color: var(--bs-form-valid-border-color);
+}
+:is(.ui-link, .ui-link *):is(.form-control:not([type=file],[type=color]), .form-select:not([multiple],[size]:not([size="0"],[size="1"]))).is-invalid, .was-validated :is(.ui-link, .ui-link *):is(.form-control:not([type=file],[type=color]), .form-select:not([multiple],[size]:not([size="0"],[size="1"]))):invalid {
+  --ui-input-line-color: var(--bs-form-invalid-border-color);
+}
+:is(.ui-link, .ui-link *):is(.form-control:not([type=file],[type=color]), .form-select:not([multiple],[size]:not([size="0"],[size="1"]))):disabled {color: var(--bs-tertiary-color);}
+:is(.ui-link.input-group-text, .ui-link .input-group-text) {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0;
+  color: var(--bs-secondary-color);
+}
+:is(.ui-link.btn-secondary, .ui-link .btn-secondary, .ui-link.btn-outline-secondary, .ui-link .btn-outline-secondary, .ui-link.btn-link-secondary, .ui-link .btn-link-secondary) {--ui-link-color:var(--bs-secondary-text-emphasis);--ui-link-hover-color:var(--bs-secondary-text-emphasis);}
+:is(.ui-link.btn-success, .ui-link .btn-success, .ui-link.btn-outline-success, .ui-link .btn-outline-success, .ui-link.btn-link-success, .ui-link .btn-link-success) {--ui-link-color:var(--bs-success-text-emphasis);--ui-link-hover-color:var(--bs-success-text-emphasis);}
+:is(.ui-link.btn-info, .ui-link .btn-info, .ui-link.btn-outline-info, .ui-link .btn-outline-info, .ui-link.btn-link-info, .ui-link .btn-link-info) {--ui-link-color:var(--bs-info-text-emphasis);--ui-link-hover-color:var(--bs-info-text-emphasis);}
+:is(.ui-link.btn-warning, .ui-link .btn-warning, .ui-link.btn-outline-warning, .ui-link .btn-outline-warning, .ui-link.btn-link-warning, .ui-link .btn-link-warning) {--ui-link-color:var(--bs-warning-text-emphasis);--ui-link-hover-color:var(--bs-warning-text-emphasis);}
+:is(.ui-link.btn-danger, .ui-link .btn-danger, .ui-link.btn-outline-danger, .ui-link .btn-outline-danger, .ui-link.btn-link-danger, .ui-link .btn-link-danger) {--ui-link-color:var(--bs-danger-text-emphasis);--ui-link-hover-color:var(--bs-danger-text-emphasis);}
+:is(.ui-link.btn-light, .ui-link .btn-light, .ui-link.btn-outline-light, .ui-link .btn-outline-light, .ui-link.btn-link-light, .ui-link .btn-link-light) {--ui-link-color:var(--bs-light-text-emphasis);--ui-link-hover-color:var(--bs-light-text-emphasis);}
+:is(.ui-link.btn-dark, .ui-link .btn-dark, .ui-link.btn-outline-dark, .ui-link .btn-outline-dark, .ui-link.btn-link-dark, .ui-link .btn-link-dark) {--ui-link-color:var(--bs-dark-text-emphasis);--ui-link-hover-color:var(--bs-dark-text-emphasis);}

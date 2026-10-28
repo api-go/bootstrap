@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — 2026-10-28
+
+- 新增 `ui-link` 统一按钮/分页简洁外观，以及保留焦点、校验和原生交互的下划线输入。
+- 新增 `ui-toolbar` / `ui-toolbar-fields` 密度感知工具条间距；统一辅助信息的弱化规范。
+
 ## [v1.0.15] - 2026-10-15
 - Center child Bootstrap icons with intrinsic flex alignment so density changes and line-height utilities cannot shift Add/action glyphs.
 - Add inherited ui-sm/ui-lg/ui-default density for native Bootstrap controls and shared layout tokens; explicit native sizes and spacing retain priority.
