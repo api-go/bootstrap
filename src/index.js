@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './button.css'
 import './density.css'
+import './appearance.css'
 import { Hash, LocalStorage } from '@apigo.cc/state'
 
 const GlobalStates = { Hash, LocalStorage }

@@ -66,6 +66,25 @@ Bootstrap.config({
 
 ## 3. 核心机制 (Internal)
 
+### 简洁外观与工具条
+
+在容器添加 `ui-link`，按钮/分页使用链接外观，文本输入和单选下拉使用透明背景与底部下划线。输入组标签/图标透明、无边框，位于下划线之外。移除 class 即恢复原样，不重建控件，不影响绑定。支持与 `ui-sm` / `ui-lg` 独立组合。
+
+焦点线使用主色，校验保留有效/无效颜色和原生图标，禁用/只读语义不变。复选框、单选框、range、文件/颜色输入和多行选择框保留专用原生 UI；卡片和表格结构边框独立。按钮链接默认无下划线，正文链接保留原样；分页当前项保留选中标识。
+
+工具条用 `ui-toolbar px-2 px-sm-3`，flex 筛选表单用 `ui-toolbar-fields` 继承间距。有框模式增加呼吸空间，简洁模式更紧凑；尺寸随密度变化。只由一层容器负责内边距，避免重复叠加。
+
+数字/实际值用 `text-body`，辅助说明与分隔符用 `text-body-tertiary`，辅助操作用 `text-body-secondary`，主要动作和校验保留语义强调。
+
+```html
+<section class="ui-sm ui-link">
+  <div class="ui-toolbar d-flex align-items-center px-2 px-sm-3">
+    <div class="input-group"><span class="input-group-text">Status</span><select class="form-select" aria-label="Status"><option>All</option><option>Open</option></select></div>
+    <button class="btn btn-primary">Search</button>
+  </div>
+</section>
+```
+
 ### 全局密度
 
 在 `html` 或 `body` 上设置 `class="ui-sm"` / `class="ui-lg"`；不设置则保持 BS5 默认大小。局部区域可以使用 `ui-default`、`ui-sm` 或 `ui-lg` 覆盖继承，每个元素只设置一个密度类。切换 class 即时生效，无需遍历控件、重写 class 或重建表单。
