@@ -1,11 +1,11 @@
-# @apigo.cc/bootstrap API 手册 (AI Optimized)
+# @api-go/bootstrap API 手册 (AI Optimized)
 
 Bootstrap 5.3 自包含集成引擎。
 
 ## 0. 快速开始 (Quick Start)
 直接在 HTML 中引入（无需打包，完全非 ESM 注入）：
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@apigo.cc/bootstrap@1.0.15/dist/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@api-go/bootstrap@1.0.16/dist/bootstrap.min.js"></script>
 ```
 
 ## 1. 运行时接口

@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import './button.css'
 import './density.css'
 import './appearance.css'
-import { Hash, LocalStorage } from '@apigo.cc/state'
+import { Hash, LocalStorage } from '@api-go/state'
 
 const GlobalStates = { Hash, LocalStorage }
 
@@ -33,7 +33,7 @@ export const BootstrapThemes = {
 }
 
 /**
- * @apigo.cc/bootstrap
+ * @api-go/bootstrap
  * 自包含的 Bootstrap 5.3 集成引擎
  */
 

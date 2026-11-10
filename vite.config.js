@@ -10,8 +10,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@apigo.cc/state': resolve(__dirname, '../state/src/index.js'),
-      '@apigo.cc/bootstrap': resolve(__dirname, 'src/index.js')
+      '@api-go/state': resolve(__dirname, '../state/src/index.js'),
+      '@api-go/bootstrap': resolve(__dirname, 'src/index.js')
     }
   },
   build: {
@@ -21,7 +21,7 @@ export default defineConfig({
       formats: ['umd']
     },
     rollupOptions: {
-      external: ['@apigo.cc/state'],
+      external: ['@api-go/state'],
       output: [
         {
           format: 'umd',
@@ -29,7 +29,7 @@ export default defineConfig({
           entryFileNames: 'bootstrap.js',
           extend: true,
           globals: {
-            '@apigo.cc/state': 'ApigoState'
+            '@api-go/state': 'ApigoState'
           }
         },
         {
@@ -38,7 +38,7 @@ export default defineConfig({
           entryFileNames: 'bootstrap.min.js',
           extend: true,
           globals: {
-            '@apigo.cc/state': 'ApigoState'
+            '@api-go/state': 'ApigoState'
           },
           plugins: [terser()]
         }

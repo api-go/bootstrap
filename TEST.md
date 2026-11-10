@@ -15,3 +15,7 @@
 - AI validation: build the package, open the test page in the Codex in-app browser, and verify configured primary colors for solid, link, and outline button variables, including outline hover and active states.
 - `npm test`: optional standard Playwright regression entry for CI or a manually provisioned environment.
 - `npm run build`: Vite produces the self-contained browser bundle and minified bundle.
+
+## GitHub migration validation (pending release)
+
+Module paths and internal dependency versions are migrated. Development verification uses GOWORK=off and explicit sibling replacements; remove these replacements before release. See migration validation logs for actual results. Existing unrelated working changes are preserved and require separate review.

@@ -1,3 +1,7 @@
+## [v1.0.16] - 2026-11-10
+
+- 迁移至 github.com/api-go/bootstrap，同步内部模块路径与依赖。
+
 # Changelog
 
 ## Unreleased — 2026-10-28
@@ -47,7 +51,7 @@
 - **Build Format**: Switched build output to IIFE format only.
 
 ### Improvements
-- **Integration**: Simplified dependency handling for `@apigo.cc/state` by using global variables.
+- **Integration**: Simplified dependency handling for `@api-go/state` by using global variables.
 - **Docs**: Updated README with new versioning and non-ESM usage instructions.
 
 ## 1.0.5 (2026-06-05)
